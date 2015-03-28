@@ -79,6 +79,10 @@ public class MainActivity extends ActionBarActivity {
                 R.drawable.a19,
                 R.drawable.a20);
 
+        public ImageAdapter() {
+            setHasStableIds(true);
+        }
+
         @Override
         public ImageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item, parent, false);
@@ -93,6 +97,11 @@ public class MainActivity extends ActionBarActivity {
                     .fit()
                     .centerInside()
                     .into(holder.iv);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
         }
 
         @Override
