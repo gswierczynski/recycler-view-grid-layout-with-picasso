@@ -91,7 +91,10 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public void onBindViewHolder(ImageViewHolder holder, int position) {
-            Log.d(TAG, "onBindViewHolder position: " + position + " | holder obj:" + holder.toString());
+            if (holder.id != -1) {
+                Log.d(TAG, "different holder. Provided: " + holder.id + " expected: " + position);
+            }
+            holder.id = position;
             Picasso.with(holder.iv.getContext())
                     .load(resourceIds.get(position))
                     .fit()
@@ -123,6 +126,7 @@ public class MainActivity extends ActionBarActivity {
 
     private static class ImageViewHolder extends ClickableViewHolder {
 
+        public int id = -1;
         public ImageView iv;
 
         public ImageViewHolder(View itemView, OnClickListener onClickListener) {
